@@ -1,0 +1,114 @@
+\documentclass[10pt,leqno ]{article}
+
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\usepackage[margin=1.5in]{geometry}
+\usepackage{setspace}
+\usepackage[german]{babel} %Deutsche Sprachunterstützung
+\usepackage[babel,german=quotes]{csquotes} % Für gute Anführungszeichen
+
+\newcommand{\estimates}{\overset{\scriptscriptstyle\wedge}{=}}
+
+\begin{document}
+
+\section{Rekursion}
+\subsection{Binomialkoeffizient}
+Zuerst definieren wir eine $\mu$-rekursive Fakultätsfunktion $fak: \mathbb{N} \rightarrow \mathbb{N}$ mit:
+\begin{align*}
+    fak(0) =& c^0_1 \\
+    fak(n+1) =& mult \circ (succ(\Pi^2_1), \Pi^2_2)(n, fak(n))
+\end{align*}
+
+Da die zur Definition verwendete $mult$-Funktion als $\mu$-rekursiv angenommen werden kann, und alle weiteren Bestandteile Inhalt der Klasse der primitiv rekursiven Funktionen sind, ist die Funktion $fak$ somit auch $\mu$-rekursiv.
+
+Mithilfe dieser Fakultätsfunktion können wir nun die $\mu$-rekursive Funktion $g: \mathbb{N} \times \mathbb{N} \rightarrow \mathbb{N}$ mit: 
+\begin{align*}
+    g(n,k) = div \circ (fak \circ \Pi^2_1, mult \circ (fak \circ \Pi^2_2, fak \circ sub(\Pi^2_1, \Pi^2_2))) (n,k) \\
+\end{align*}
+definieren.
+
+Da wir vorher gezeigt haben, dass die Funktion $fak$ $\mu$-rekursiv ist, und jede Funktion, die durch Einsetzung/Komposition von $\mu$-rekursiven Funktionen entsteht, auch $\mu$-rekursiv ist, ist die Funktion $g$ selbst $\mu$-rekursiv.
+
+
+\subsection{}
+Geschlossene Formel: 
+
+\begin{equation}
+asdf
+\end{equation}
+
+\pagebreak
+
+\section{Simulation}
+
+Simulation von WHILE durch LOOP*
+
+\paragraph{Hinweis}
+Zeigen Sie zunächst, dass LOOP-Programme mit dem zusätzlichen Konstrukt
+Turing-mächtig sind.
+    
+LOOP-Programme sind mithilfe des zusätzlichen Konstruktes \textit{DO P WHILE  $x_i \neq 0$ END} Turing-mächtig, da jedes WHILE-Programm \textit{WHILE $x_i \neq 0$ DO P END} durch das folgende LOOP-Programm (mit Konstrukt) simuliert werden kann:
+
+\begin{flushleft}
+IF $x_i \neq 0$ THEN \\ 
+\quad    DO P WHILE $x_i \neq 0$ END; \\ 
+END
+\end{flushleft}
+
+Im Folgenden wird gezeigt, dass LOOP*-Programme Turing-mächtig sind, indem bewiesen wird, wie jedes WHILE-Programm durch ein LOOP*-Programm simuliert werden kann.
+
+
+\paragraph{Definition Hilfskonstrukt}
+Zunächst soll ein Hilfskonstrukt eingeführt werden, welches durch ein LOOP-Programm simuliert werden kann.
+\begin{flushleft}
+    IF $x_i \neq 0$ THEN P END $\estimates x_i := 0$; LOOP $x_i$ DO $x_j := 1$ END; LOOP $x_j$ DO P END;
+\end{flushleft}
+
+\subsubsection*{Beweis}
+Ein jedes WHILE-Programm \textit{WHILE $x_i \neq 0$ DO P END} kann durch das folgende LOOP*-Programm simuliert werden:
+
+\begin{flushleft}
+    IF $x_i \neq 0$ THEN \\ 
+    \quad $x_{N_P} := x_0;$ \\ 
+    \quad MAKE P  BREAK \\
+    \qquad IF $x_i \neq 0$ THEN \\ 
+    \quad \qquad $x_0 := 0;$ \\
+    \qquad END; \\
+    \quad END; \\ 
+    \quad $x_0 := x_{N_P}$ \\
+    END;
+\end{flushleft}
+
+Durch die IF-Anweisung in der ersten Zeile wird sichergestellt, dass der \textit{MAKE}-Block nur dann ausgeführt wird, wenn $x_i \neq 0$ ist. Das ist wichtig, da bei WHILE-Programmen die Bedingung auch zuerst überprüft wird, bevor der Block das erste Mal ausgeführt wird.
+
+Die Zuweisung des Wertes von $x_0$ an $x_{N_P}$ vor dem \textit{MAKE}-Block und wieder zurück nach Ausführung des \textit{MAKE}-Blocks stellt sicher, dass der zuvor in $x_0$ gespeicherte Wert nicht verloren geht. Da zum Speichern des Wertes von $x_0$ die Variable $x_{N_P}$ verwendet wird, ist sichergestellt, dass keine in P benutzte Variable überschrieben wird.
+
+\pagebreak
+
+\section{Unentscheidbarkeit}
+
+Die Frage \enquote{Verhalten sich $M$ und $M'$ bei Eingabewort $w$ unterschiedlich?} ist unentscheidbar.
+\begin{flushleft}
+Die im Folgenden definierte Sprache enthält alle Wörter, welche die Fragestellung erfüllen bzw. sie mit \enquote{JA} beantworten.
+\end{flushleft}
+\begin{align*}
+    P := \{ m_1 \# m_2 \# w \mid \exists M_1 : m_1 = \langle M_1 \rangle , \exists M_2 : m_2 = \langle M_2 \rangle \text{ und } \\ M_1 \text{ und } M_2 \text{ verhalten sich unterschiedlich auf Eingabewort w} \}
+\end{align*}
+
+\paragraph{Beweis:} Durch Nachweis $K \leq P$
+\begin{flushleft}
+    Dazu wähle $f: \{ 0, 1 \}^* \rightarrow \{ 0,1,\# \}^*$ mit: 
+    \[ f(x) = x\#x\#x \]
+\end{flushleft}
+
+\begin{flushleft}
+    Dann ist $f^{-1}(H) = K$.
+\end{flushleft}
+
+\end{document}
