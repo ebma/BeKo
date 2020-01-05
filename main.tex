@@ -93,22 +93,41 @@ Die Zuweisung des Wertes von $x_0$ an $x_{N_P}$ vor dem \textit{MAKE}-Block und 
 
 \section{Unentscheidbarkeit}
 
-Die Frage \enquote{Verhalten sich $M$ und $M'$ bei Eingabewort $w$ unterschiedlich?} ist unentscheidbar.
-\begin{flushleft}
-Die im Folgenden definierte Sprache enthält alle Wörter, welche die Fragestellung erfüllen bzw. sie mit \enquote{JA} beantworten.
-\end{flushleft}
+Sei 
 \begin{align*}
     P := \{ m_1 \# m_2 \# w \mid \exists M_1 : m_1 = \langle M_1 \rangle , \exists M_2 : m_2 = \langle M_2 \rangle \text{ und } \\ M_1 \text{ und } M_2 \text{ verhalten sich unterschiedlich auf Eingabewort w} \}
 \end{align*}
+die Menge aller Wörter, welche die Frage \enquote{Verhalten sich $M$ und $M'$ bei Eingabewort $w$ unterschiedlich?} mit \enquote{Ja} beantworten.
 
-\paragraph{Beweis:} Durch Nachweis $K \leq P$
 \begin{flushleft}
-    Dazu wähle $f: \{ 0, 1 \}^* \rightarrow \{ 0,1,\# \}^*$ mit: 
-    \[ f(x) = x\#x\#x \]
+    Wir zeigen, dass P nicht entscheidbar ist, in dem wir zeigen, dass 
+    \[ K = \{ w \in \{0,1 \}^* \mid M_w \text{ hält auf Eingabe } w \} \]
+    auf P reduzierbar ist.
 \end{flushleft}
 
 \begin{flushleft}
-    Dann ist $f^{-1}(H) = K$.
+    Zu zeigen ist $K \leq P$.
 \end{flushleft}
+
+\begin{flushleft}
+    Sei $f: \{ 0, 1 \}^* \rightarrow \{ 0,1,\# \}^*$ mit: \( f(w) = w\#w\#w \)
+\end{flushleft}
+
+\begin{flushleft}
+    $f$ ist total, da nach Definition $M_w$ für jedes $w$ eine Turing-Maschine $M_w$ existiert. $f$ ist berechenbar, da nach der Vorlesung $M_w$ berechenbar ist, eine universelle Turing-Maschine und eine Turing-Maschine die das Band löscht existieren und die Kodierung einer Turing-Maschine berechenbar ist.
+    Wenn des weiteren
+    \[... \Leftrightarrow ... \]
+    gilt, ist die Reduktion gezeigt.
+\end{flushleft}
+
+
+\begin{flushleft}
+    Wenn also K entscheidbar wäre, dann musste auch P entscheidbar sein. Da dies nicht der Fall ist, ist auch P nicht entscheidbar. 
+\end{flushleft}
+
+\pagebreak
+
+\section{Ackermann-Funktion}
+
 
 \end{document}
