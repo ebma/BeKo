@@ -12,6 +12,11 @@
 \usepackage{setspace}
 \usepackage[german]{babel} %Deutsche Sprachunterstützung
 \usepackage[babel,german=quotes]{csquotes} % Für gute Anführungszeichen
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\cfoot{Seite \thepage}
+\lhead{Matrikelnummern: 4100811, 347220}
 
 \newcommand{\estimates}{\overset{\scriptscriptstyle\wedge}{=}}
 
@@ -183,15 +188,25 @@ die Menge aller Wörter, welche die Frage \enquote{Verhalten sich $M$ und $M'$ b
 \end{flushleft}
 
 \begin{flushleft}
-    Sei $f: \{ 0, 1 \}^* \rightarrow \{ 0,1,\# \}^*$ mit: \( f(w) = w\#w\#w \)
+    Sei $f: \{ 0, 1 \}^* \rightarrow \{ 0,1,\# \}^*$ mit: \( f(w) = w'\)
+, wobei $M_{w'}$ eine Turing-Maschine ist, welche eine Turing-Maschine $M_w$ (nachfolgend als $M_{w_1}$ bezeichnet) und eine zweite Turing-Maschine $M_w$ (nachfolgend als $M_{w_2}$ bezeichnet) abwechselnd auf Eingabe $w$ simuliert. Wenn sowohl $M_{w_1}$ und  $M_{w_2}$ halten und die Eingabe (nicht) akzeptieren, wechselt $M_{w'}$ in eine Endlosschleife.  
 \end{flushleft}
+Dann ist $f^{-1}(P) = K$.
 
 \begin{flushleft}
     $f$ ist total, da nach Definition $M_w$ für jedes $w$ eine Turing-Maschine $M_w$ existiert. $f$ ist berechenbar, da nach der Vorlesung $M_w$ berechenbar ist, eine universelle Turing-Maschine und eine Turing-Maschine die das Band löscht existieren und die Kodierung einer Turing-Maschine berechenbar ist.
     Wenn des weiteren
-    \[... \Leftrightarrow ... \]
+    \[ w \in K \Leftrightarrow f(w) \in P \]
     gilt, ist die Reduktion gezeigt.
 \end{flushleft}
+
+\paragraph{Hinrichtung:} 
+Sei $w \in K$ bel.
+
+Dann hält $M_w$ auf Eingabe w.
+Dann wird $M_{w'}$ nicht halten, da die Turing-Maschine in eine Endlosschleife gewechselt hat, da sowohl $M_{w_1}$ als auch $M_{w_2}$ die Eingabe . 
+
+
 
 
 \begin{flushleft}
