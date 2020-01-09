@@ -175,7 +175,7 @@ Sei
 \begin{align*}
     P := \{ m_1 \# m_2 \# w \mid \exists M_1 : m_1 = \langle M_1 \rangle , \exists M_2 : m_2 = \langle M_2 \rangle \text{ und } \\ M_1 \text{ und } M_2 \text{ verhalten sich unterschiedlich auf Eingabewort w} \}
 \end{align*}
-die Menge aller Wörter, welche die Frage \enquote{Verhalten sich $M$ und $M'$ bei Eingabewort $w$ unterschiedlich?} mit \enquote{Ja} beantworten.
+die Menge aller Wörter, welche die Frage \enquote{Verhalten sich $M_1$ und $M_2$ bei Eingabewort $w$ unterschiedlich?} mit \enquote{Ja} beantworten.
 
 \begin{flushleft}
     Wir zeigen, dass P nicht entscheidbar ist, in dem wir zeigen, dass 
@@ -188,13 +188,12 @@ die Menge aller Wörter, welche die Frage \enquote{Verhalten sich $M$ und $M'$ b
 \end{flushleft}
 
 \begin{flushleft}
-    Sei $f: \{ 0, 1 \}^* \rightarrow \{ 0,1,\# \}^*$ mit: \( f(w) = w'\)
-, wobei $M_{w'}$ eine Turing-Maschine ist, welche eine Turing-Maschine $M_w$ (nachfolgend als $M_{w_1}$ bezeichnet) und eine zweite Turing-Maschine $M_w$ (nachfolgend als $M_{w_2}$ bezeichnet) abwechselnd auf Eingabe $w$ simuliert. Wenn sowohl $M_{w_1}$ und  $M_{w_2}$ halten und die Eingabe (nicht) akzeptieren, wechselt $M_{w'}$ in eine Endlosschleife.  
+    Sei $f: \{ 0, 1 \}^* \rightarrow \{ 0,1,\# \}^*$ mit: \( f(w) = w\#w'\#w\)
+, wobei $M_{w'}$ eine Turing-Maschine ist, die eine Eingabe genau dann akzeptiert, wenn $M_w$ diese nicht akzeptiert und die eine Eingabe nicht akzeptiert, wenn $M_w$ diese akzeptiert.
 \end{flushleft}
-Dann ist $f^{-1}(P) = K$.
 
 \begin{flushleft}
-    $f$ ist total, da nach Definition $M_w$ für jedes $w$ eine Turing-Maschine $M_w$ existiert. $f$ ist berechenbar, da nach der Vorlesung $M_w$ berechenbar ist, eine universelle Turing-Maschine und eine Turing-Maschine die das Band löscht existieren und die Kodierung einer Turing-Maschine berechenbar ist.
+    $f$ ist total, da nach Definition $M_w$ für jedes $w$ eine Turing-Maschine $M_w$ existiert und somit auch $M_{w'}$ und ihre Kodierung $w'$. $f$ ist berechenbar, da nach der Vorlesung $M_w$ berechenbar ist, eine universelle Turing-Maschine und eine Turing-Maschine, welche Eingaben nicht akzeptiert, wenn eine andere Turing-Maschine diese akzeptiert und umgekehrt \footnote{Die zu invertierende Turing-Maschine kann von einer anderen TM umschlossen werden, welche die innere TM simuliert und nur dann akzeptiert, wenn die innere TM die Eingabe nicht akzeptiert, bzw. nicht akzeptiert, wenn die simulierte TM die Eingabe akzeptiert.} und die Kodierung einer Turing-Maschine berechenbar ist.
     Wenn des weiteren
     \[ w \in K \Leftrightarrow f(w) \in P \]
     gilt, ist die Reduktion gezeigt.
@@ -203,10 +202,24 @@ Dann ist $f^{-1}(P) = K$.
 \paragraph{Hinrichtung:} 
 Sei $w \in K$ bel.
 
-Dann hält $M_w$ auf Eingabe w.
-Dann wird $M_{w'}$ nicht halten, da die Turing-Maschine in eine Endlosschleife gewechselt hat, da sowohl $M_{w_1}$ als auch $M_{w_2}$ die Eingabe . 
+Dann hält $M_w$ auf Eingabe $w$.
 
+Dann hält auch $M_{w'}$ auf Eingabe $w$, wobei sie die Eingabe nicht akzeptiert.
 
+Damit verhalten sich die Turing-Maschinen unterschiedlich.
+
+Daraus folgt, dass $f(w) \in P$.
+
+\paragraph{Rückrichtung:}
+Sei $w \notin K$.
+
+Dann hält $M_w$ nicht auf Eingabe $w$.
+
+Dann hält auch $M_{w'}$ nicht auf Eingabe $w$.
+
+Damit verhalten sich die Turing-Maschinen nicht unterschiedlich.
+
+Daraus folgt, dass $f(w) \notin P$.
 
 
 \begin{flushleft}
