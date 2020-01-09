@@ -217,21 +217,26 @@ Dann wird $M_{w'}$ nicht halten, da die Turing-Maschine in eine Endlosschleife g
 
 \section{Ackermann-Funktion}
 
-Aufgrund der Rekursiven Definition der gegebenen Funktion $c(m,n)$ an der Stelle $m=1$ und  $n \geq 0$, die mindestens einmal ausgeführt werden muss, erkennt man leicht das  $c(m,n)$ größer ist als die Ackermannfunktion nach Rósza Péte  $a(x,y)$ (Tutorium 7). 
+An der rekursiven Definition der gegebenen Funktion $c(m,n)$ an der Stelle $m=1$ und  $n \geq 0$, die mindestens einmal ausgeführt werden muss, erkennt man, dass  $c(m,n)$ größer ist als die Ackermann-Funktion $a(m,n)$ nach Rózsa Péter (Tutorium 7). 
 \begin{flushleft}
-Ausgehend der Annahme das $c(m,n) > a(x,y)$ lässt sich folgendes schließen: 
+Ausgehend der Annahme, dass $c(m,n) > a(m,n)$ lässt sich folgendes schließen: 
 \end{flushleft}
 
 \begin{flushleft}
-Aus Tutorium 7 Foilie 9 folgt dass $a(4,y)=2^{2^{.^{.^{2}}}}-3$, wobei der Turm $n+3$ mal die zwei enthält.
+In Tutorium 7 Folie 9 wurde bewiesen, dass $a(4,y)=2^{2^{.^{.^{2}}}}-3$, wobei der Turm $n+3$ mal die 2 enthält.
 \end{flushleft}
 
 \begin{flushleft}
-    Für $x=4$ und $y=4$ gilt: \[ a(4,4)= 2^{2^{.^{.^{2}}}} - 3 > d(4) =  2^{2^{.^{.^{2}}}} \] da der Turm bei $a(4,4)= 2^{2^{.^{.^{2}}}} - 3$ $7$ mal die 2 enthält und der Turm bei $d(4) =  2^{2^{.^{.^{2}}}}$ nur 6 mal. Darauß folgt: \[ c(4,4) > a(4,4) > d(4)  \]
+    Für $m=4$ und $n=4$ gilt: \[ a(4,4)= 2^{2^{.^{.^{2}}}} - 3 > d(4) =  2^{2^{.^{.^{2}}}} \] da der Turm bei $a(4,4)= 2^{2^{.^{.^{2}}}} - 3$ sieben mal die 2 enthält und der Turm bei $d(4) =  2^{2^{.^{.^{2}}}}$ nur sechs mal. 
+    
+    Darauß folgt: \[ c(4,4) > a(4,4) > d(4)  \]
 \end{flushleft}
 
 \begin{flushleft}
-    Weiter gilt aus dem Hinweis  $c(5,4) > c(4,4)$ und $c(5,5) > c(4,5)$ somit lässt sich schließen das sowohl $c(4,5) > d(5)$ als auch $c(5,5) > d(5)$ gilt. Damit folgt: \[ c(5,5) > c(5,4) > c(4,5) > d(5) \]. Darauß folt das $n'=4$ sein muss.
+    Weiterhin gilt, dass $c(m,n) > c(m-1,n)$. Betrachten wir nun ein beliebiges $n' \ge 4$. So kann man herleiten, dass $c(n',n') > d(n')$, da $c(n',n') \ge c(4,n') > d(n')$.
 \end{flushleft}
+
+Damit wurde gezeigt, dass mit $n = 4 $ ein $n \in \mathbb{N}$ existiert, sodass  die Bedingung gilt.
+
 
 \end{document}
