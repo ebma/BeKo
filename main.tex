@@ -37,13 +37,16 @@ Da wir vorher gezeigt haben, dass die Funktion $fak$ $\mu$-rekursiv ist, und jed
 
 
 \subsection{}
-Die geschlossene Formel für $f(1,x,y))$ für $y \le x$ lautet: 
+Die geschlossene Formel für $f(1,x,y)$ für $y \le x$ lautet: 
 \[ 2^x * \frac{x!}{y! * (x - y)!} \]
 
 \subsubsection*{Beweis:}
-Wir führen Induktion über x:
+\begin{flushleft}
+    Wir führen Induktion über x:
+\end{flushleft}
 
 Induktionsanfang:
+Für $x = 0$ gilt $y = 0$, da $y \le x$ und 
 \begin{equation*}
 f(1,0,0) = 1 = 2^0 * \frac{0!}{0! * (0-0)!}
 \end{equation*}
@@ -69,12 +72,21 @@ f(1,x+1,y) &= f(0, f(1,x,y-1), f(1,x,y)) \\
            &= 2^{x+1} * \frac{(x+1)!}{y! * ((x+1) - y)!}
 \end{align*}
 
-Wir führen Induktion über y:
+\begin{flushleft}
+    Wir führen Induktion über y:
+\end{flushleft}
 
 Induktionsanfang:
-\begin{equation*}
-f(1,0,0) = 1 = 2^0 * \frac{0!}{0! * (0-0)!}
-\end{equation*}
+Für y = 0 gilt:
+\begin{align*}
+f(1,x,0) &= f(0, 0, f(1, x-1, 0)) \\
+         &= 2*f(1,x-1,0) \\
+         &= ... \\
+         &= 2^x * f(1,0,0) \\
+         &= 2^x * 1 \\
+         &= 2^x * \frac{x!}{x!} \\
+         &= 2^x * \frac{x!}{0! * (x-0)!} \\
+\end{align*}
 
 Induktionsvoraussetzung:
 \begin{equation*}
@@ -96,6 +108,13 @@ f(1,x,y+1) &= f(0, f(1,x-1,y), f(1,x-1,y+1)) \\
            &= 2^x * ( \binom{x}{y+1}) \\
            &= 2^x * \frac{(x)!}{(y+1)! * ((x) - (y+1)!}
 \end{align*}
+
+\vspace{1cm}
+\begin{flushleft}
+    Aus den beiden durchgeführten Induktionsbeweisen folgt, dass die Formel 
+    \[ 2^x * \frac{x!}{y! * (x - y)!} \]
+    für $f(1,x,y)$ für $y \le x$ gilt.
+\end{flushleft}
 
 \pagebreak
 
